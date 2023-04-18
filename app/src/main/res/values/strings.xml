@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">HiddenWordKotlin</string>
+
+    <array name="words">
+        <item>tigger</item>
+        <item>citation</item>
+        <item>stressful</item>
+        <item>careless</item>
+        <item>careful</item>
+        <item>famous</item>
+        <item>unknown</item>
+        <item>meaning</item>
+        <item>meaning</item>
+        <item>ambitious</item>
+        <item>property</item>
+        <item>bird</item>
+        <item>tree</item>
+        <item>machine</item>
+        <item>followers</item>
+        <item>identity</item>
+        <item>colorful</item>
+        <item>great</item>
+        <item>father</item>
+        <item>mother</item>
+        <item>empty</item>
+        <item>possible</item>
+        <item>success</item>
+        <item>failure</item>
+        <item>thoughts</item>
+        <item>busy</item>
+        <item>priest</item>
+        <item>backward</item>
+        <item>hopeless</item>
+        <item>sunrise</item>
+        <item>moonlight</item>
+        <item>essential</item>
+        <item>important</item>
+        <item>useless</item>
+        <item>tiger</item>
+        <item>dairy</item>
+        <item>elephant</item>
+        <item>giraffe</item>
+        <item>horse</item>
+        <item>pan</item>
+        <item>fork</item>
+        <item>knife</item>
+        <item>downtown</item>
+        <item>country</item>
+        <item>flag</item>
+        <item>money</item>
+        <item>picture</item>
+        <item>animal</item>
+        <item>people</item>
+    </array>
+
+</resources>
