@@ -8,10 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper
 class DbManager(context: Context):SQLiteOpenHelper(context, tableName,null, version) {
 
     companion object {
-        private val tableName="Dictionnary"
-        private val version = 1
-        private val id = "id"
-        private val colWord="words"
+        private const val tableName="Dictionnary"
+        private const val version = 1
+        private const val id = "id"
+        private const val colWord="words"
     }
 
     init {
@@ -54,9 +54,6 @@ class DbManager(context: Context):SQLiteOpenHelper(context, tableName,null, vers
                 while(cursor.moveToNext())
         }
         cursor.close()
-
-
-
 
         return list
     }

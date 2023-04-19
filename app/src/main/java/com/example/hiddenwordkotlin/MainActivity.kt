@@ -66,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         title = "Hidden Word Game"
+
         submit = findViewById(R.id.submit)
         addWord = findViewById(R.id.addWord)
         choose = findViewById(R.id.choose)
@@ -74,23 +75,25 @@ class MainActivity : AppCompatActivity() {
         timer = findViewById(R.id.timer)
 
         dbManager = DbManager(this)
-
         timer.text = "0 sec"
-
-
-
-
-
         recyclerView = findViewById(R.id.recyclerview)
 
-        submit.setOnClickListener {
+        choose.setOnClickListener {
+            countDownTimer.start()
+            hiddenWord = dbManager.readdb().random()
+            val list = MutableList(hiddenWord.length) { "" }
+            adapter = MyAdapter(this, list)
+            recyclerView.layoutManager = GridLayoutManager(this, 5)
+            recyclerView.adapter = adapter
+            timer.text = hiddenWord
+        }
 
+        submit.setOnClickListener {
 
             for (i in hiddenWord.indices) {
                 if (hiddenWord[i].toString().uppercase() == editText.text.toString().uppercase()) {
                     adapter.list[i] = hiddenWord[i].toString().uppercase()
                     adapter.notifyDataSetChanged()
-
                 }
             }
             editText.setText("")
@@ -107,29 +110,14 @@ class MainActivity : AppCompatActivity() {
                         remainingSeconds=120
                         progressBar.progress = 0
 
-
                     }
 
                     show()
                 }
-
-
             }
-
-
         }
 
-        choose.setOnClickListener {
-            countDownTimer.start()
-            hiddenWord = dbManager.readdb().random()
-            val list = MutableList(hiddenWord.length) { "" }
-            adapter = MyAdapter(this, list)
-            recyclerView.layoutManager = GridLayoutManager(this, 5)
-            recyclerView.adapter = adapter
-            timer.text = hiddenWord
 
-
-        }
 
 
         addWord.setOnClickListener {
@@ -138,10 +126,17 @@ class MainActivity : AppCompatActivity() {
             }
              else if (!dbManager.readdb().contains(editText.text.toString())) {
                 dbManager.addWord(editText.text.toString())
-            }
-
+                val builder = AlertDialog.Builder(this)
+                with(builder) {
+                    setTitle("Word added")
+                    setMessage("The word ${editText.text.toString().uppercase()} was added to the DB," +
+                            "the DB contains ${dbManager.readdb().size} words")
+                    setPositiveButton("Ok") {_,_,->
+                    }
+                    show()
+                }
+             }
         }
-
 
     }
 
