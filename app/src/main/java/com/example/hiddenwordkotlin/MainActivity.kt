@@ -75,10 +75,12 @@ class MainActivity : AppCompatActivity() {
         timer = findViewById(R.id.timer)
 
         dbManager = DbManager(this)
-        timer.text = "0 sec"
+        timer.text = "0 sc"
         recyclerView = findViewById(R.id.recyclerview)
 
         choose.setOnClickListener {
+             if (timer.text!="0 sc") {return@setOnClickListener}
+
             countDownTimer.start()
             hiddenWord = dbManager.readdb().random()
             val list = MutableList(hiddenWord.length) { "" }
@@ -109,6 +111,7 @@ class MainActivity : AppCompatActivity() {
                         countDownTimer.cancel()
                         remainingSeconds=120
                         progressBar.progress = 0
+                        timer.text="0 sc"
 
                     }
 
@@ -121,7 +124,8 @@ class MainActivity : AppCompatActivity() {
 
 
         addWord.setOnClickListener {
-            if (editText.text.toString().isEmpty()) {
+            if (timer.text!="0 sc") {return@setOnClickListener}
+            else if (editText.text.toString().isEmpty()) {
                 Toast.makeText(this,"Please enter a word to add",Toast.LENGTH_LONG).show()
             }
              else if (!dbManager.readdb().contains(editText.text.toString())) {
